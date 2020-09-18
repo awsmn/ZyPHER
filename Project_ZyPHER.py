@@ -24,10 +24,7 @@ def sendvid():
     
     now=dt.datetime.now()
     camera.rotation = -90
-    #camera.vflip=True
-    #camera.start_preview()
     camera.capture('example.jpg' )
-    #camera.stop_preview()
     time.sleep(2)
     camera.start_recording('examplevid.h264')
     time.sleep(10)
@@ -66,8 +63,6 @@ def sendvid():
 
     command = shlex.split('MP4Box -add {f}.h264 {f}.mp4'.format(f=filename))
     output = subprocess.check_output(command, stderr=subprocess.STDOUT)
-    #print(output)
-
  
     msg = MIMEMultipart()
     msg['From'] = fromaddr
@@ -99,7 +94,6 @@ def sendvid():
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(20, GPIO.IN,GPIO.PUD_DOWN) 
-#GPIO.setup(24, GPIO.OUT)
 try:
     while True:
       if GPIO.input(20): 
